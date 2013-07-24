@@ -1,5 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
+date_default_timezone_set('Europe/Moscow');
+
 /* куда будет записываться лог приложения */
 define('LOG_FILE', 'log.txt');
 

@@ -32,37 +32,37 @@ class Atwix_Logger extends Atwix_Logger_Base {
     error_log($message, 3, $this->_logFile);
   }
   
-	/**
-	 * Logs an info message.
-	 *
-	 * @param string $message The message to log
-	 * @param integer $line The where the error occurs
-	 */
-	public function info($message, $line = NULL) {
+  /**
+   * Logs an info message.
+   *
+   * @param string $message The message to log
+   * @param integer $line The where the error occurs
+   */
+  public function info($message, $line = NULL) {
     $this->_log(__FUNCTION__, $message, $line);
   }
 
-	/**
-	 * Logs an warning message.
-	 *
-	 * @param string $message The message to log
-	 * @param integer $line The where the error occurs
-	 */
-	public function warning($message, $line = NULL) {
+  /**
+   * Logs an warning message.
+   *
+   * @param string $message The message to log
+   * @param integer $line The where the error occurs
+   */
+  public function warning($message, $line = NULL) {
     $this->_log(__FUNCTION__, $message, $line);
   }
 
-	/**
-	 * Logs an error message.
-	 *
-	 * @param string $message The message to log
-	 * @param integer $line The where the error occurs
-	 */
-	public function error($message, $line = NULL) {
+  /**
+   * Logs an error message.
+   *
+   * @param string $message The message to log
+   * @param integer $line The where the error occurs
+   */
+  public function error($message, $line = NULL) {
     $this->_log(__FUNCTION__, $message, $line);
   }
   
-  /* получение имени вызывающего класса для лога */
+  /* РїРѕР»СѓС‡РµРЅРёРµ РёРјРµРЅРё РІС‹Р·С‹РІР°СЋС‰РµРіРѕ РєР»Р°СЃСЃР° РґР»СЏ Р»РѕРіР° */
   private function get_calling_class() {
     $trace = debug_backtrace();
     $class = $trace[1]['class'];

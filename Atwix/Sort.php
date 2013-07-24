@@ -1,17 +1,17 @@
 <?php
 abstract class Atwix_Sort implements Atwix_Sort_Interface {
   const SURNAME = 1;
-	/**
- 	 * This function will sort an array by its values using a user-supplied comparison
- 	 * function. If the array you wish to sort needs to be sorted by some non-trivial
- 	 * criteria, you should use this function.
- 	 *
- 	 * @param array $data The data to be sorted
- 	 * @param string $callback The callback method/function name used for sorting
- 	 * @return void
- 	 * @http://www.php.net/usort
- 	 */
-	public static function usort(array &$data, $callback = 'strcmp') {
+  /**
+    * This function will sort an array by its values using a user-supplied comparison
+    * function. If the array you wish to sort needs to be sorted by some non-trivial
+    * criteria, you should use this function.
+    *
+    * @param array $data The data to be sorted
+    * @param string $callback The callback method/function name used for sorting
+    * @return void
+    * @http://www.php.net/usort
+    */
+  public static function usort(array &$data, $callback = 'strcmp') {
     switch ($callback) {
       case 1:
         usort($data, array('self', 'sort_surname'));
@@ -22,8 +22,8 @@ abstract class Atwix_Sort implements Atwix_Sort_Interface {
     }
   }
   
-  /* ñîðòèðîâêà ïî ôàìèëèè. preg_split äëÿ ñëó÷àÿ, êîãäà
-     ìåæäó èìåíåì è ôàìèëèåé íåñêîëüêî ïðîáåëüíûõ ñèìâîëîâ.
+  /* ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ° Ð¿Ð¾ Ñ„Ð°Ð¼Ð¸Ð»Ð¸Ð¸. preg_split Ð´Ð»Ñ ÑÐ»ÑƒÑ‡Ð°Ñ, ÐºÐ¾Ð³Ð´Ð°
+     Ð¼ÐµÐ¶Ð´Ñƒ Ð¸Ð¼ÐµÐ½ÐµÐ¼ Ð¸ Ñ„Ð°Ð¼Ð¸Ð»Ð¸ÐµÐ¹ Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð¿Ñ€Ð¾Ð±ÐµÐ»ÑŒÐ½Ñ‹Ñ… ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð².
   */
   private static function sort_surname($a, $b){
     $a = preg_split("/[\s,]+/", $a);

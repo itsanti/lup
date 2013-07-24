@@ -23,7 +23,7 @@ class Atwix_Logger extends Atwix_Logger_Base {
   protected function _log($logLevel, $message, $line = NULL) {
     $message = sprintf(
       "%s[%s] %s - line %s: %s" . PHP_EOL,
-      get_calling_class(),
+      $this->get_calling_class(),
       $logLevel,
       date("Y-m-d H:i:s"),
       $line,
@@ -60,5 +60,18 @@ class Atwix_Logger extends Atwix_Logger_Base {
 	 */
 	public function error($message, $line = NULL) {
     $this->_log(__FUNCTION__, $message, $line);
+  }
+  
+  /* получение имени вызывающего класса для лога */
+  private function get_calling_class() {
+    $trace = debug_backtrace();
+    $class = $trace[1]['class'];
+    for ( $i=1; $i<count( $trace ); $i++ ) {
+      if ( isset( $trace[$i] ) ) {
+        if ( $class != $trace[$i]['class'] ) {
+          return $trace[$i]['class'];
+        }
+      }
+    }
   }
 }

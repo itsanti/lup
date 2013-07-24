@@ -14,19 +14,6 @@ function loadClass($class) {
 }
 spl_autoload_register('loadClass');
 
-/* получение имени вызывающего класса для лога */
-function get_calling_class() {
-  $trace = debug_backtrace();
-  $class = $trace[1]['class'];
-  for ( $i=1; $i<count( $trace ); $i++ ) {
-    if ( isset( $trace[$i] ) ) {
-      if ( $class != $trace[$i]['class'] ) {
-        return $trace[$i]['class'];
-      }
-    }
-  }
-}
-
 // очищаем файл автоматически, если он превысит 2730 байт
 // формируем ссылку на очистку log-файла
 if ( filesize(LOG_FILE) >= 2730 || (isset($_GET['clog']) && (int)$_GET['clog'] === 1) ) {

@@ -1,2 +1,2 @@
-lup
+lup test project
 ===

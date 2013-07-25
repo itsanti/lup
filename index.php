@@ -5,6 +5,13 @@ date_default_timezone_set('Europe/Moscow');
 /* куда будет записываться лог приложения */
 define('LOG_FILE', 'log.txt');
 
+// очищаем файл автоматически, если он превысит 2730 байт
+if ( filesize(LOG_FILE) >= 2730 || (isset($_GET['clog']) && (int)$_GET['clog'] === 1) ) {
+  file_put_contents(LOG_FILE, '');
+  header("Location: {$_SERVER['HTTP_REFERER']}");
+  exit;
+}
+
 /* реализация __autoload */
 function loadClass($class) {
     $filename = str_replace( '_', DIRECTORY_SEPARATOR, $class ).'.php';
@@ -14,11 +21,7 @@ function loadClass($class) {
 }
 spl_autoload_register('loadClass');
 
-// очищаем файл автоматически, если он превысит 2730 байт
 // формируем ссылку на очистку log-файла
-if ( filesize(LOG_FILE) >= 2730 || (isset($_GET['clog']) && (int)$_GET['clog'] === 1) ) {
-  file_put_contents(LOG_FILE, '');
-}
 echo "menu: <a href='?clog=1'>очистить log-файл</a>";
 
 // Application
